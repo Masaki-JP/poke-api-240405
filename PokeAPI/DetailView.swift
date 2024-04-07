@@ -26,6 +26,14 @@ struct DetailView: View {
                         Text(pokemon.weight.description + " kg")
                     }
                 }
+                VStack {
+                    statView("Hit Point", min: 0, max: 250, value: 100, tint: .green)
+                    statView("Attack", min: 0, max: 150, value: 100, tint: .red)
+                    statView("Defence", min: 0, max: 150, value: 100, tint: .blue)
+                    statView("Special Attack", min: 0, max: 150, value: 100, tint: .orange)
+                    statView("Special Defence", min: 0, max: 150, value: 100, tint: .cyan)
+                    statView("Speed", min: 0, max: 150, value: 100, tint: .yellow)
+                }
             }
             .padding(.horizontal)
         }
@@ -123,6 +131,24 @@ struct DetailView: View {
         let url = Bundle.main.url(forResource: "ErrorSound", withExtension: "mp3")!
         criesPlayer.replaceCurrentItem(with: .init(url: url))
         criesPlayer.play()
+    }
+
+    func statView(_ stat: String, min: Double, max: Double, value: Double, tint: Color) -> some View{
+        VStack(alignment: .leading) {
+            Text("\(stat): \(value.description)")
+                .font(.headline)
+            Gauge(value: value, in: min...max) {
+                EmptyView()
+            } currentValueLabel: {
+                EmptyView()
+            } minimumValueLabel: {
+                Text(min.description)
+            } maximumValueLabel: {
+                Text(max.description)
+            }
+            .gaugeStyle(.accessoryLinear)
+            .tint(tint)
+        }
     }
 }
 
