@@ -36,15 +36,6 @@ struct CardView: View {
 }
 
 #Preview {
-    CardView(
-        pokemon: Pokemon(
-            id: 1,
-            name: "bulbasaur",
-            height: 0.7,
-            weight: 6.9,
-            types: (slot1: .grass, slot2: Optional(.poison)),
-            imageURL: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png")!
-        )
-    )
-    .frame(width: 100, height: 100)
+    CardView(pokemon: sample_1)
+        .frame(width: 100, height: 100)
 }

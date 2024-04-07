@@ -117,38 +117,13 @@ struct DetailView: View {
 }
 
 #Preview("フシギダネ") {
-    DetailView(pokemon: Pokemon(
-        id: 1,
-        name: "bulbasaur",
-        height: 0.7,
-        weight: 6.9,
-        types: (slot1: .grass, slot2: Optional(.poison)),
-        imageURL: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png")!
-    ))
+    DetailView(pokemon: sample_1)
 }
 
 #Preview("ヒトカゲ") {
-    DetailView(
-        pokemon: Pokemon(
-            id: 4,
-            name: "charmander",
-            height: 0.6,
-            weight: 8.5,
-            types: (slot1: .fire, slot2: nil),
-            imageURL: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png")!
-        )
-    )
+    DetailView(pokemon: sample_4)
 }
 
-#Preview("ミュー") {
-    DetailView(
-        pokemon: Pokemon(
-            id: 151,
-            name: "mew",
-            height: 0.4,
-            weight: 4.0,
-            types: (slot1: .psychic, slot2: nil),
-            imageURL: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png")!
-        )
-    )
+#Preview("ミュウ") {
+    DetailView(pokemon: sample_151)
 }
