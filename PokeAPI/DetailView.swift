@@ -16,6 +16,16 @@ struct DetailView: View {
                 Button("鳴き声をきく") {
                     playCries()
                 }
+                Grid(alignment: .leading) {
+                    GridRow {
+                        Text("Height:")
+                        Text(pokemon.height.description + " m")
+                    }
+                    GridRow {
+                        Text("Weight:")
+                        Text(pokemon.weight.description + " kg")
+                    }
+                }
             }
             .padding(.horizontal)
         }
