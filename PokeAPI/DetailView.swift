@@ -1,9 +1,11 @@
 import SwiftUI
+import AVFoundation
 
 //<a target="_blank" href="https://icons8.com/icon/63311/pokeball">ポケモンボール</a> アイコン by <a target="_blank" href="https://icons8.com">Icons8</a>
 
 struct DetailView: View {
     let pokemon: Pokemon
+    private let criesPlayer = AVPlayer()
 
     var body: some View {
         ScrollView {
@@ -11,6 +13,9 @@ struct DetailView: View {
                 header
                 image
                 types
+                Button("鳴き声をきく") {
+                    playCries()
+                }
             }
             .padding(.horizontal)
         }
@@ -89,6 +94,15 @@ struct DetailView: View {
             }
         }
         .foregroundStyle(.white)
+    }
+
+    func playCries() { // 著作権
+        guard (1...151).contains(pokemon.id) else { return }
+        let idString = String(format: "%03d", pokemon.id)
+        guard let url = URL(string: "https://www.pokemon.jp/special/nakigoe151/sound/m/\(idString).mp3")
+        else { return }
+        criesPlayer.replaceCurrentItem(with: .init(url: url))
+        criesPlayer.play()
     }
 }
 
