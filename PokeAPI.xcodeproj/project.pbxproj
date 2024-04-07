@@ -16,6 +16,7 @@
 		4C29F7C82BC0313500A02500 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C29F7C72BC0313500A02500 /* Pokemon.swift */; };
 		4C29F7CA2BC0314F00A02500 /* PokeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C29F7C92BC0314F00A02500 /* PokeAPIClient.swift */; };
 		4CB358DF2BC21A3800028886 /* PokeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB358DE2BC21A3800028886 /* PokeType.swift */; };
+		4CB358E12BC27A9300028886 /* ErrorSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4CB358E02BC27A9300028886 /* ErrorSound.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		4C29F7C72BC0313500A02500 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		4C29F7C92BC0314F00A02500 /* PokeAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeAPIClient.swift; sourceTree = "<group>"; };
 		4CB358DE2BC21A3800028886 /* PokeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeType.swift; sourceTree = "<group>"; };
+		4CB358E02BC27A9300028886 /* ErrorSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ErrorSound.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 		4C29F7B42BC02D2100A02500 /* PokeAPI */ = {
 			isa = PBXGroup;
 			children = (
+				4CB358E02BC27A9300028886 /* ErrorSound.mp3 */,
 				4C29F7B52BC02D2100A02500 /* PokeAPIApp.swift */,
 				4C29F7B72BC02D2100A02500 /* ContentView.swift */,
 				4C29F7C32BC0310C00A02500 /* CardView.swift */,
@@ -140,6 +143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CB358E12BC27A9300028886 /* ErrorSound.mp3 in Resources */,
 				4C29F7BD2BC02D2200A02500 /* Preview Assets.xcassets in Resources */,
 				4C29F7BA2BC02D2200A02500 /* Assets.xcassets in Resources */,
 			);
