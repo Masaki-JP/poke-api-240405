@@ -97,10 +97,17 @@ struct DetailView: View {
     }
 
     func playCries() { // 著作権
-        guard (1...151).contains(pokemon.id) else { return }
+        guard (1...151).contains(pokemon.id) 
+        else { playErrorSound(); return; }
         let idString = String(format: "%03d", pokemon.id)
         guard let url = URL(string: "https://www.pokemon.jp/special/nakigoe151/sound/m/\(idString).mp3")
-        else { return }
+        else { playErrorSound(); return; }
+        criesPlayer.replaceCurrentItem(with: .init(url: url))
+        criesPlayer.play()
+    }
+
+    func playErrorSound() {
+        let url = Bundle.main.url(forResource: "ErrorSound", withExtension: "mp3")!
         criesPlayer.replaceCurrentItem(with: .init(url: url))
         criesPlayer.play()
     }
