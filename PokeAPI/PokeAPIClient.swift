@@ -3,6 +3,8 @@ import Foundation
 private struct PokemonDTO: Decodable {
     let id: Int
     let name: String
+    let height: String
+    let weight: String
     let types: [TypeSlot]
     let sprites: Sprites
 
@@ -23,27 +25,32 @@ private struct PokemonDTO: Decodable {
     }
 
     func convert() -> Pokemon? {
-        guard let types: (Pokemon.PokeType, Pokemon.PokeType?) = if self.types.count == 1 {
-            (Pokemon.PokeType(rawValue: self.types[0].type.name) ?? .unknown , nil)
-        } else if self.types.count == 2 {
-            (
-                {
-                    return .init(rawValue: self.types[0].type.name) ?? .unknown
-                }(),
-                {
-                    let slot2: Pokemon.PokeType? = .init(rawValue: self.types[1].type.name) ?? .unknown
-                    return slot2
-                }()
-            )
-        } else {
-            nil
-        },
-        let imageURL = URL(string: self.sprites.frontDefault)
+        guard
+            let height = Double(self.height),
+            let weight = Double(self.weight),
+            let imageURL = URL(string: self.sprites.frontDefault),
+            let types: (Pokemon.PokeType, Pokemon.PokeType?) = if self.types.count == 1 {
+                (Pokemon.PokeType(rawValue: self.types[0].type.name) ?? .unknown , nil)
+            } else if self.types.count == 2 {
+                (
+                    {
+                        return .init(rawValue: self.types[0].type.name) ?? .unknown
+                    }(),
+                    {
+                        let slot2: Pokemon.PokeType? = .init(rawValue: self.types[1].type.name) ?? .unknown
+                        return slot2
+                    }()
+                )
+            } else {
+                nil
+            }
         else { return nil }
 
         return Pokemon(
             id: self.id,
             name: self.name,
+            height: height * 0.1,
+            weight: weight * 0.1,
             types: types,
             imageURL: imageURL
         )
