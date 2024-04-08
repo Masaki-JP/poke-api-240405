@@ -7,6 +7,7 @@ private struct PokemonDTO: Decodable {
     let weight: Int
     let types: [TypeSlot]
     let sprites: Sprites
+    let stats: [StatObject]
 
     struct TypeSlot: Decodable {
         let type: PokeType
@@ -21,6 +22,20 @@ private struct PokemonDTO: Decodable {
 
         enum CodingKeys: String, CodingKey {
             case frontDefault = "front_default"
+        }
+    }
+
+    struct StatObject: Decodable {
+        let baseStat: Int
+        let stat: Stat
+
+        enum CodingKeys: String, CodingKey {
+            case baseStat = "base_stat"
+            case stat
+        }
+
+        struct Stat: Decodable {
+            let name: String
         }
     }
 
@@ -44,13 +59,35 @@ private struct PokemonDTO: Decodable {
             }
         else { return nil }
 
+        func getStat(_ name: String) -> Int? {
+            let statObjects = self.stats.filter { $0.stat.name == name }
+            guard let statObject = statObjects.first
+            else { return nil }
+            return statObject.baseStat
+        }
+
+        guard
+            let hp = getStat("hp"),
+            let attack = getStat("attack"),
+            let defense = getStat("defense"),
+            let specialAttack = getStat("special-attack"),
+            let specialDefense = getStat("special-defense"),
+            let speed = getStat("speed")
+        else { return nil }
+
         return Pokemon(
             id: self.id,
             name: self.name,
             height: Double(self.height) * 0.1,
             weight: Double(self.weight) * 0.1,
             types: types,
-            imageURL: imageURL
+            imageURL: imageURL,
+            hp: hp,
+            attack: attack,
+            defense: defense,
+            specialAttack: specialAttack,
+            specialDefense: specialDefense,
+            speed: speed
         )
     }
 }
