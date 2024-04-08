@@ -29,9 +29,9 @@ struct DetailView: View {
                 VStack {
                     statView("Hit Point", min: 0, max: 250, value: Double(pokemon.hp), tint: .green)
                     statView("Attack", min: 0, max: 150, value: Double(pokemon.attack), tint: .red)
-                    statView("Defence", min: 0, max: 150, value: Double(pokemon.defense), tint: .blue)
+                    statView("Defense", min: 0, max: 150, value: Double(pokemon.defense), tint: .blue)
                     statView("Special Attack", min: 0, max: 150, value: Double(pokemon.specialAttack), tint: .orange)
-                    statView("Special Defence", min: 0, max: 150, value: Double(pokemon.specialDefense), tint: .cyan)
+                    statView("Special Defense", min: 0, max: 150, value: Double(pokemon.specialDefense), tint: .cyan)
                     statView("Speed", min: 0, max: 150, value: Double(pokemon.speed), tint: .yellow)
                 }
             }
