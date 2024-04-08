@@ -27,12 +27,12 @@ struct DetailView: View {
                     }
                 }
                 VStack {
-                    statView("Hit Point", min: 0, max: 250, value: 100, tint: .green)
-                    statView("Attack", min: 0, max: 150, value: 100, tint: .red)
-                    statView("Defence", min: 0, max: 150, value: 100, tint: .blue)
-                    statView("Special Attack", min: 0, max: 150, value: 100, tint: .orange)
-                    statView("Special Defence", min: 0, max: 150, value: 100, tint: .cyan)
-                    statView("Speed", min: 0, max: 150, value: 100, tint: .yellow)
+                    statView("Hit Point", min: 0, max: 250, value: Double(pokemon.hp), tint: .green)
+                    statView("Attack", min: 0, max: 150, value: Double(pokemon.attack), tint: .red)
+                    statView("Defence", min: 0, max: 150, value: Double(pokemon.defense), tint: .blue)
+                    statView("Special Attack", min: 0, max: 150, value: Double(pokemon.specialAttack), tint: .orange)
+                    statView("Special Defence", min: 0, max: 150, value: Double(pokemon.specialDefense), tint: .cyan)
+                    statView("Speed", min: 0, max: 150, value: Double(pokemon.speed), tint: .yellow)
                 }
             }
             .padding(.horizontal)
