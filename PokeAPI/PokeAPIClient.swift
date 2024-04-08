@@ -78,8 +78,8 @@ private struct PokemonDTO: Decodable {
         return Pokemon(
             id: self.id,
             name: self.name,
-            height: Double(self.height) * 0.1,
-            weight: Double(self.weight) * 0.1,
+            height: Double(self.height) / 10,
+            weight: Double(self.weight) / 10,
             types: types,
             imageURL: imageURL,
             hp: hp,
