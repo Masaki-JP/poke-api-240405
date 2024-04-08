@@ -135,16 +135,16 @@ struct DetailView: View {
 
     func statView(_ stat: String, min: Double, max: Double, value: Double, tint: Color) -> some View{
         VStack(alignment: .leading) {
-            Text("\(stat): \(value.description)")
+            Text("\(stat): \(String(format: "%.0f", value))")
                 .font(.headline)
             Gauge(value: value, in: min...max) {
                 EmptyView()
             } currentValueLabel: {
                 EmptyView()
             } minimumValueLabel: {
-                Text(min.description)
+                Text(String(format: "%.0f", min))
             } maximumValueLabel: {
-                Text(max.description)
+                Text(String(format: "%.0f", max))
             }
             .gaugeStyle(.accessoryLinear)
             .tint(tint)
