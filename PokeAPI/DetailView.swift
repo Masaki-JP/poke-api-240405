@@ -132,7 +132,7 @@ struct DetailView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             Divider()
                 .padding(.top, 2.5)
-            Text("A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokemon.")
+            Text("A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokemon.") // 静的実装
                 .padding(.top, 5)
             Text("Size")
                 .font(.title3.bold())
@@ -153,7 +153,7 @@ struct DetailView: View {
                 .padding(.top, 20)
             Divider()
                 .padding(.top, 2.5)
-            Text("Seed pokemon")
+            Text("Seed pokemon") // 静的実装
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top, 5)
             Text("Abilitys")
@@ -162,7 +162,7 @@ struct DetailView: View {
                 .padding(.top, 20)
             Divider()
                 .padding(.top, 2.5)
-            Text("overgrow / chlorophyll")
+            Text("overgrow / chlorophyll") // 静的実装
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top, 5)
             Text("Evolution")
@@ -171,7 +171,7 @@ struct DetailView: View {
                 .padding(.top, 20)
             Divider()
                 .padding(.top, 2.5)
-            Grid(alignment: .leading) {
+            Grid(alignment: .leading) { // 静的実装
                 GridRow {
                     Text("Before Evolution")
                     Text(":")
@@ -193,9 +193,7 @@ struct DetailView: View {
     }
 
     func playCries() { // 著作権
-
         playErrorSound()
-
         //        guard (1...151).contains(pokemon.id)
         //        else { playErrorSound(); return; }
         //        let idString = String(format: "%03d", pokemon.id)
