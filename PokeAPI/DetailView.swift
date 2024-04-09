@@ -13,20 +13,15 @@ struct DetailView: View {
                 header
                 image
                 types
-                Button("鳴き声をきく") {
-                    playCries()
-                }
-                Grid(alignment: .leading) {
-                    GridRow {
-                        Text("Height:")
-                        Text(pokemon.height.description + " m")
+                VStack(spacing: 20) {
+                    Grid {
+                        GridRow {
+                            Divider()
+                            Text("Status")
+                                .font(.title3.bold())
+                            Divider()
+                        }
                     }
-                    GridRow {
-                        Text("Weight:")
-                        Text(pokemon.weight.description + " kg")
-                    }
-                }
-                VStack {
                     statView("Hit Point", min: 0, max: 250, value: Double(pokemon.hp), tint: .green)
                     statView("Attack", min: 0, max: 150, value: Double(pokemon.attack), tint: .red)
                     statView("Defense", min: 0, max: 150, value: Double(pokemon.defense), tint: .blue)
