@@ -13,24 +13,7 @@ struct DetailView: View {
                 header
                 image
                 types
-                VStack(spacing: 20) {
-                    Grid {
-                        GridRow {
-                            Divider()
-                            Text("Status")
-                                .font(.title3.bold())
-                            Divider()
-                        }
-                    }
-                    statView("Hit Point", min: 0, max: 250, value: Double(pokemon.hp), tint: .green)
-                    statView("Attack", min: 0, max: 150, value: Double(pokemon.attack), tint: .red)
-                    statView("Defense", min: 0, max: 150, value: Double(pokemon.defense), tint: .blue)
-                    statView("Special Attack", min: 0, max: 150, value: Double(pokemon.specialAttack), tint: .orange)
-                    statView("Special Defense", min: 0, max: 150, value: Double(pokemon.specialDefense), tint: .cyan)
-                    statView("Speed", min: 0, max: 150, value: Double(pokemon.speed), tint: .yellow)
-                }
-                .padding()
-                .background(.regularMaterial)
+                status
             }
             .padding(.horizontal)
         }
@@ -111,17 +94,38 @@ struct DetailView: View {
         .foregroundStyle(.white)
     }
 
+    var status: some View {
+        VStack(spacing: 20) {
+            Grid {
+                GridRow {
+                    Divider()
+                    Text("Status")
+                        .font(.title3.bold())
+                    Divider()
+                }
+            }
+            statView("Hit Point", min: 0, max: 250, value: Double(pokemon.hp), tint: .green)
+            statView("Attack", min: 0, max: 150, value: Double(pokemon.attack), tint: .red)
+            statView("Defense", min: 0, max: 150, value: Double(pokemon.defense), tint: .blue)
+            statView("Special Attack", min: 0, max: 150, value: Double(pokemon.specialAttack), tint: .orange)
+            statView("Special Defense", min: 0, max: 150, value: Double(pokemon.specialDefense), tint: .cyan)
+            statView("Speed", min: 0, max: 150, value: Double(pokemon.speed), tint: .yellow)
+        }
+        .padding()
+        .background(.regularMaterial)
+    }
+
     func playCries() { // 著作権
-        
+
         playErrorSound()
 
-//        guard (1...151).contains(pokemon.id)
-//        else { playErrorSound(); return; }
-//        let idString = String(format: "%03d", pokemon.id)
-//        guard let url = URL(string: "https://www.pokemon.jp/special/nakigoe151/sound/m/\(idString).mp3")
-//        else { playErrorSound(); return; }
-//        criesPlayer.replaceCurrentItem(with: .init(url: url))
-//        criesPlayer.play()
+        //        guard (1...151).contains(pokemon.id)
+        //        else { playErrorSound(); return; }
+        //        let idString = String(format: "%03d", pokemon.id)
+        //        guard let url = URL(string: "https://www.pokemon.jp/special/nakigoe151/sound/m/\(idString).mp3")
+        //        else { playErrorSound(); return; }
+        //        criesPlayer.replaceCurrentItem(with: .init(url: url))
+        //        criesPlayer.play()
     }
 
     func playErrorSound() {
