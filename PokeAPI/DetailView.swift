@@ -34,6 +34,8 @@ struct DetailView: View {
                     statView("Special Defense", min: 0, max: 150, value: Double(pokemon.specialDefense), tint: .cyan)
                     statView("Speed", min: 0, max: 150, value: Double(pokemon.speed), tint: .yellow)
                 }
+                .padding()
+                .background(.regularMaterial)
             }
             .padding(.horizontal)
         }
