@@ -69,6 +69,15 @@ struct DetailView: View {
             }
         }
         .background(.ultraThinMaterial)
+        .overlay(alignment: .bottomTrailing) {
+            Button(action: playCries) {
+                Image(systemName: "headphones.circle.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
+            }
+            .padding([.trailing, .bottom])
+        }
     }
 
     var types: some View {
