@@ -13,8 +13,14 @@ struct DetailView: View {
                 header
                 image
                 types
-                status
-                information
+                VStack(spacing: 0) {
+                    status
+                    information
+                }
+                .padding(.horizontal)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical)
+                .background(.regularMaterial)
             }
             .padding(.horizontal)
         }
@@ -104,16 +110,14 @@ struct DetailView: View {
         .foregroundStyle(.white)
     }
 
+    @ViewBuilder
     var status: some View {
-        VStack(spacing: 20) {
-            Grid {
-                GridRow {
-                    Divider()
-                    Text("Status")
-                        .font(.title3.bold())
-                    Divider()
-                }
-            }
+        Text("Base Stats")
+            .font(.title3.bold())
+            .frame(maxWidth: .infinity, alignment: .leading)
+        Divider()
+            .padding(.top, 2.5)
+        Group {
             statView("Hit Point", min: 0, max: 250, value: Double(pokemon.hp), tint: .green)
             statView("Attack", min: 0, max: 150, value: Double(pokemon.attack), tint: .red)
             statView("Defense", min: 0, max: 150, value: Double(pokemon.defense), tint: .blue)
@@ -121,75 +125,71 @@ struct DetailView: View {
             statView("Special Defense", min: 0, max: 150, value: Double(pokemon.specialDefense), tint: .cyan)
             statView("Speed", min: 0, max: 150, value: Double(pokemon.speed), tint: .yellow)
         }
-        .padding()
-        .background(.regularMaterial)
+        .padding(.top, 20)
     }
 
+    @ViewBuilder
     var information: some View {
-        VStack(spacing: 0) {
-            Text("Description")
-                .font(.title3.bold())
-                .frame(maxWidth: .infinity, alignment: .leading)
-            Divider()
-                .padding(.top, 2.5)
-            Text("A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokemon.") // 静的実装
-                .padding(.top, 5)
-            Text("Size")
-                .font(.title3.bold())
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 20)
-            Divider()
-                .padding(.top, 2.5)
-            HStack {
-                Text("Height: \(pokemon.height.description)m")
-                Text("/")
-                Text("Weight: \(pokemon.height.description)kg")
-            }
+        Text("Description")
+            .font(.title3.bold())
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.top, 20)
+        Divider()
+            .padding(.top, 2.5)
+        Text("A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokemon.") // 静的実装
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.top, 5)
-            Text("Category")
-                .font(.title3.bold())
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 20)
-            Divider()
-                .padding(.top, 2.5)
-            Text("Seed pokemon") // 静的実装
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 5)
-            Text("Abilitys")
-                .font(.title3.bold())
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 20)
-            Divider()
-                .padding(.top, 2.5)
-            Text("overgrow / chlorophyll") // 静的実装
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 5)
-            Text("Evolution")
-                .font(.title3.bold())
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 20)
-            Divider()
-                .padding(.top, 2.5)
-            Grid(alignment: .leading) { // 静的実装
-                GridRow {
-                    Text("Before Evolution")
-                    Text(":")
-                    Text("none").padding(.leading, 3)
-                }
-                GridRow {
-                    Text("After Evolution")
-                    Text(":")
-                    Text("ivysaur").padding(.leading, 3)
-                }
-            }
+        Text("Size")
+            .font(.title3.bold())
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.top, 5)
+            .padding(.top, 20)
+        Divider()
+            .padding(.top, 2.5)
+        HStack {
+            Text("Height: \(pokemon.height.description)m")
+            Text("/")
+            Text("Weight: \(pokemon.height.description)kg")
         }
-        .padding(.horizontal)
-        .frame(maxWidth: .infinity)
-        .padding(.vertical)
-        .background(.regularMaterial)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.top, 5)
+        Text("Category")
+            .font(.title3.bold())
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.top, 20)
+        Divider()
+            .padding(.top, 2.5)
+        Text("Seed pokemon") // 静的実装
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.top, 5)
+        Text("Abilitys")
+            .font(.title3.bold())
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.top, 20)
+        Divider()
+            .padding(.top, 2.5)
+        Text("overgrow / chlorophyll") // 静的実装
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.top, 5)
+        Text("Evolution")
+            .font(.title3.bold())
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.top, 20)
+        Divider()
+            .padding(.top, 2.5)
+        Grid(alignment: .leading) { // 静的実装
+            GridRow {
+                Text("Before Evolution")
+                Text(":")
+                Text("none").padding(.leading, 3)
+            }
+            GridRow {
+                Text("After Evolution")
+                Text(":")
+                Text("ivysaur").padding(.leading, 3)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.top, 5)
     }
 
     func playCries() { // 著作権
