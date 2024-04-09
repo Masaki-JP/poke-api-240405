@@ -24,6 +24,7 @@ struct ContentView: View {
                 }
             }
             .padding(.horizontal, 10)
+            .padding(.bottom, UIDevice.current.userInterfaceIdiom == .pad ? 15 : 0)
         }
         .safeAreaInset(edge: .bottom) {
             if pokemons.isEmpty {
@@ -36,6 +37,7 @@ struct ContentView: View {
                 .buttonBorderShape(.capsule)
                 .tint(.orange)
                 .fontWeight(.semibold)
+                .padding(.bottom, UIDevice.current.userInterfaceIdiom == .pad ? 15 : 0)
             }
         }
         .background(.brown.gradient)

@@ -23,6 +23,7 @@ struct DetailView: View {
                 .background(.regularMaterial)
             }
             .padding(.horizontal)
+            .padding(.bottom, UIDevice.current.userInterfaceIdiom == .pad ? 15 : 0)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.brown.gradient)
