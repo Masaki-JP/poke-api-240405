@@ -14,6 +14,7 @@ struct DetailView: View {
                 image
                 types
                 status
+                information
             }
             .padding(.horizontal)
         }
@@ -121,6 +122,64 @@ struct DetailView: View {
             statView("Speed", min: 0, max: 150, value: Double(pokemon.speed), tint: .yellow)
         }
         .padding()
+        .background(.regularMaterial)
+    }
+
+    var information: some View {
+        VStack(spacing: 0) {
+            Text("Description")
+                .font(.title3.bold())
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Divider()
+                .padding(.top, 2.5)
+            Text("A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokemon.")
+                .padding(.top, 5)
+            Text("Size")
+                .font(.title3.bold())
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top, 20)
+            Divider()
+                .padding(.top, 2.5)
+            HStack {
+                Text("Height: \(pokemon.height.description)m")
+                Text("/")
+                Text("Weight: \(pokemon.height.description)kg")
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.top, 5)
+            Text("Category")
+                .font(.title3.bold())
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top, 20)
+            Divider()
+                .padding(.top, 2.5)
+            Text("Seed pokemon")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top, 5)
+            Text("Evolution")
+                .font(.title3.bold())
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top, 20)
+            Divider()
+                .padding(.top, 2.5)
+            Grid(alignment: .leading) {
+                GridRow {
+                    Text("Before Evolution")
+                    Text(":")
+                    Text("none").padding(.leading, 3)
+                }
+                GridRow {
+                    Text("After Evolution")
+                    Text(":")
+                    Text("ivysaur").padding(.leading, 3)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.top, 5)
+        }
+        .padding(.horizontal)
+        .frame(maxWidth: .infinity)
+        .padding(.vertical)
         .background(.regularMaterial)
     }
 
