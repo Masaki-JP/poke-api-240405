@@ -13,9 +13,13 @@ struct DetailView: View {
                 header
                 image
                 types
-                VStack(spacing: 0) {
-                    status
-                    information
+                VStack(spacing: 20) {
+                    basestats
+                    description
+                    size
+                    category
+                    abilitys
+                    evolution
                 }
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity)
@@ -111,97 +115,74 @@ struct DetailView: View {
         .foregroundStyle(.white)
     }
 
-    @ViewBuilder
-    var status: some View {
-        Text("Base Stats")
-            .font(.title3.bold())
-            .frame(maxWidth: .infinity, alignment: .leading)
-        Divider()
-            .padding(.top, 2.5)
-        Group {
-            statView("Hit Point", min: 0, max: 250, value: Double(pokemon.hp), tint: .green)
-            statView("Attack", min: 0, max: 150, value: Double(pokemon.attack), tint: .red)
-            statView("Defense", min: 0, max: 150, value: Double(pokemon.defense), tint: .blue)
-            statView("Special Attack", min: 0, max: 150, value: Double(pokemon.specialAttack), tint: .orange)
-            statView("Special Defense", min: 0, max: 150, value: Double(pokemon.specialDefense), tint: .cyan)
-            statView("Speed", min: 0, max: 150, value: Double(pokemon.speed), tint: .yellow)
+    var basestats: some View {
+        informationContent("Base Stats") {
+            VStack(spacing: 15) {
+                stat("Hit Point", min: 0, max: 250, value: Double(pokemon.hp), tint: .green)
+                stat("Attack", min: 0, max: 150, value: Double(pokemon.attack), tint: .red)
+                stat("Defense", min: 0, max: 150, value: Double(pokemon.defense), tint: .blue)
+                stat("Special Attack", min: 0, max: 150, value: Double(pokemon.specialAttack), tint: .orange)
+                stat("Special Defense", min: 0, max: 150, value: Double(pokemon.specialDefense), tint: .cyan)
+                stat("Speed", min: 0, max: 150, value: Double(pokemon.speed), tint: .yellow)
+            }
+            .padding(.vertical, 10)
         }
-        .padding(.top, 20)
     }
 
-    @ViewBuilder
-    var information: some View {
-        Text("Description")
-            .font(.title3.bold())
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.top, 20)
-        Divider()
-            .padding(.top, 2.5)
-        Text("A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokemon.") // 静的実装
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.top, 5)
-        Text("Size")
-            .font(.title3.bold())
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.top, 20)
-        Divider()
-            .padding(.top, 2.5)
-        HStack {
-            Text("Height: \(pokemon.height.description)m")
-            Text("/")
-            Text("Weight: \(pokemon.height.description)kg")
+    var description: some View {
+        informationContent("Description") {
+            Text("A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokemon.") // 静的実装
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.top, 5)
-        Text("Category")
-            .font(.title3.bold())
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.top, 20)
-        Divider()
-            .padding(.top, 2.5)
-        Text("Seed pokemon") // 静的実装
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.top, 5)
-        Text("Abilitys")
-            .font(.title3.bold())
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.top, 20)
-        Divider()
-            .padding(.top, 2.5)
-        Text("overgrow / chlorophyll") // 静的実装
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.top, 5)
-        Text("Evolution")
-            .font(.title3.bold())
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.top, 20)
-        Divider()
-            .padding(.top, 2.5)
-        Grid(alignment: .leading) { // 静的実装
-            GridRow {
-                Text("Before Evolution")
-                Text(":")
-                Text("none").padding(.leading, 3)
-            }
-            GridRow {
-                Text("After Evolution")
-                Text(":")
-                Text("ivysaur").padding(.leading, 3)
+    }
+
+    var size: some View {
+        informationContent("Size") {
+            HStack {
+                Text("Height: \(pokemon.height.description)m")
+                Text("/")
+                Text("Weight: \(pokemon.height.description)kg")
             }
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.top, 5)
+    }
+
+    var category: some View {
+        informationContent("Category") {
+            Text("Seed pokemon") // 静的実装
+        }
+    }
+
+    var abilitys: some View {
+        informationContent("Abilitys") {
+            Text("overgrow / chlorophyll") // 静的実装
+        }
+    }
+
+    var evolution: some View {
+        informationContent("Evolution") {
+            Grid(alignment: .leading) { // 静的実装
+                GridRow {
+                    Text("Before Evolution")
+                    Text(":")
+                    Text("none").padding(.leading, 3)
+                }
+                GridRow {
+                    Text("After Evolution")
+                    Text(":")
+                    Text("ivysaur").padding(.leading, 3)
+                }
+            }
+        }
     }
 
     func playCries() { // 著作権
-        playErrorSound()
-        //        guard (1...151).contains(pokemon.id)
-        //        else { playErrorSound(); return; }
-        //        let idString = String(format: "%03d", pokemon.id)
-        //        guard let url = URL(string: "https://www.pokemon.jp/special/nakigoe151/sound/m/\(idString).mp3")
-        //        else { playErrorSound(); return; }
-        //        criesPlayer.replaceCurrentItem(with: .init(url: url))
-        //        criesPlayer.play()
+        //        playErrorSound()
+        guard (1...151).contains(pokemon.id)
+        else { playErrorSound(); return; }
+        let idString = String(format: "%03d", pokemon.id)
+        guard let url = URL(string: "https://www.pokemon.jp/special/nakigoe151/sound/m/\(idString).mp3")
+        else { playErrorSound(); return; }
+        criesPlayer.replaceCurrentItem(with: .init(url: url))
+        criesPlayer.play()
     }
 
     func playErrorSound() {
@@ -210,23 +191,6 @@ struct DetailView: View {
         criesPlayer.play()
     }
 
-    func statView(_ stat: String, min: Double, max: Double, value: Double, tint: Color) -> some View{
-        VStack(alignment: .leading) {
-            Text("\(stat): \(String(format: "%.0f", value))")
-                .font(.headline)
-            Gauge(value: value, in: min...max) {
-                EmptyView()
-            } currentValueLabel: {
-                EmptyView()
-            } minimumValueLabel: {
-                Text(String(format: "%.0f", min))
-            } maximumValueLabel: {
-                Text(String(format: "%.0f", max))
-            }
-            .gaugeStyle(.accessoryLinear)
-            .tint(tint)
-        }
-    }
 }
 
 #Preview("フシギダネ") {
