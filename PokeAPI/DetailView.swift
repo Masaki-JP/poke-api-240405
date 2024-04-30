@@ -68,10 +68,11 @@ struct DetailView: View {
     }
 
     var image: some View {
-        AsyncImage(url: pokemon.imageURL) { phase in
+        AsyncImage(url: pokemon.imageURL, transaction: .init(animation: .easeIn(duration: 1.0))) { phase in
             switch phase {
             case .empty:
-                ProgressView()
+                Rectangle().fill(.clear).scaledToFit()
+                    .overlay { ProgressView() }
             case .success(let image):
                 image.resizable().scaledToFit()
             case .failure(let error):
